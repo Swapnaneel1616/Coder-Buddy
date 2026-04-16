@@ -1,0 +1,134 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  background-color: var(--bg);
+  color: var(--text-color);
+}
+
+/* Board wrapper – optional if used */
+.board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Grid that holds the cells */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  width: max-content;
+}
+
+/* Individual cell */
+.cell {
+  width: 100px;
+  height: 100px;
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: 2px solid var(--cell-border);
+  background-color: var(--cell-bg);
+  user-select: none;
+  box-sizing: border-box;
+}
+
+/* Highlight used for the currently selected cell */
+.highlight {
+  background-color: var(--highlight-bg);
+}
+
+/* Highlight for cells that are part of a winning line */
+.winHighlight {
+  background-color: var(--win-bg);
+}
+
+/* Score board */
+.scoreBoard {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* Mode selector (e.g., Player vs AI) */
+.modeSelector {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* Undo button */
+.undoButton {
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border: 2px solid var(--button-border);
+  background-color: var(--button-bg);
+  user-select: none;
+}
+
+/* Disabled state for buttons */
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .cell {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+
+  .grid {
+    width: 100%;
+  }
+
+  .scoreBoard {
+    font-size: 1rem;
+  }
+
+  .undoButton {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .modeSelector {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* Dark‑mode support */
+:root {
+  --bg: #ffffff;
+  --text-color: #000000;
+  --cell-bg: #ffffff;
+  --cell-border: #333333;
+  --highlight-bg: rgba(255, 215, 0, 0.5);
+  --win-bg: rgba(0, 200, 0, 0.4);
+  --button-bg: #f0f0f0;
+  --button-border: #333333;
+}
+
+/* Adjust colors when user prefers dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121212;
+    --text-color: #e0e0e0;
+    --cell-bg: #1e1e1e;
+    --cell-border: #aaaaaa;
+    --highlight-bg: rgba(255, 215, 0, 0.3);
+    --win-bg: rgba(0, 200, 0, 0.2);
+    --button-bg: #333333;
+    --button-border: #aaaaaa;
+  }
+}

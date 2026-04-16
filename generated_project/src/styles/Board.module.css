@@ -1,0 +1,91 @@
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  user-select: none;
+}
+
+/* Each cell is a square that scales with the board width */
+.cell {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: var(--cell-bg, #fff);
+  border: 2px solid var(--cell-border, #333);
+  font-size: 2.5rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+/* Hover effect when the cell is still clickable */
+.cell:hover {
+  background-color: var(--cell-hover, #f5f5f5);
+}
+
+/* Disabled cells (already filled) */
+.cell.disabled {
+  cursor: default;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+/* X and O marks – fade‑in animation */
+.x,
+.o {
+  animation: fadeInMark 0.3s ease-out forwards;
+}
+
+/* Colour coding for the two players */
+.x {
+  color: var(--x-color, #e63946);
+}
+
+.o {
+  color: var(--o-color, #1d3557);
+}
+
+/* Highlight winning cells */
+.win {
+  background-color: var(--win-bg, #d4edda);
+  animation: winPulse 1.2s ease-in-out infinite;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Animations                                                               */
+/* -------------------------------------------------------------------------- */
+
+@keyframes fadeInMark {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Pulsing effect for a winning line */
+@keyframes winPulse {
+  0% {
+    box-shadow: 0 0 5px var(--win-color, #28a745);
+  }
+  50% {
+    box-shadow: 0 0 15px var(--win-color, #28a745);
+  }
+  100% {
+    box-shadow: 0 0 5px var(--win-color, #28a745);
+  }
+}
+
+/* Small press animation for a cell click */
+.cell:active {
+  transform: scale(0.96);
+}
